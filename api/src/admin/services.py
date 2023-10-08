@@ -1,7 +1,7 @@
 from typing import Union
 
 from companies.models import Company, User
-from companies.services import get_company
+from companies.services import get_company, get_company_credentials
 from companies.utils import create_user
 from fastapi import HTTPException
 from sqlalchemy import or_, select
@@ -60,8 +60,13 @@ async def verify_db_company(session: AsyncSession, company_id: int):
 
 async def delete_db_company(session: AsyncSession, company_id: int):
     company = await get_company(session=session, company_id=company_id)
+    company_credentials = await get_company_credentials(
+        session=session, email=company.email
+    )
     if company is None:
         raise HTTPException(404, detail="Company not found")
     await session.delete(company)
+    if company_credentials:
+        await session.delete(company_credentials)
     await session.commit()
     return True

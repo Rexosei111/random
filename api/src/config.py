@@ -1,5 +1,4 @@
 from functools import lru_cache
-from typing import Optional
 
 from dotenv import load_dotenv
 from pydantic import Field
@@ -14,6 +13,9 @@ class Settings(BaseSettings):
     jwt_expire_time: int
     reset_password_token_secret: str
     verification_token_secret: str
+    brevo_api_key: str
+    sender_name: str = Field(default="University of Mines and Technology")
+    sender_email: str = Field(default="kyei9189@gmail.com")
 
     class Config:
         env_file = ".env"

@@ -1,19 +1,20 @@
+import random
 import secrets
+import string
 import uuid
+from typing import Dict, List, Optional
 
+import sib_api_v3_sdk
 from config import get_settings
-from fastapi import HTTPException
-from fastapi import status
 from fastapi_users import FastAPIUsers
-from fastapi_users.authentication import AuthenticationBackend
-from fastapi_users.authentication import BearerTransport
-from fastapi_users.authentication import JWTStrategy
-from sqlalchemy import select
-from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy.ext.asyncio import AsyncSession
+from fastapi_users.authentication import (
+    AuthenticationBackend,
+    BearerTransport,
+    JWTStrategy,
+)
+from sib_api_v3_sdk.rest import ApiException
 
-from .models import get_user_manager
-from .models import User
+from .models import User, get_user_manager
 
 settings = get_settings()
 
@@ -35,26 +36,21 @@ auth_backend = AuthenticationBackend(
 
 fastapi_users = FastAPIUsers[User, uuid.UUID](get_user_manager, [auth_backend])
 
-# from __future__ import print_function
-from typing import Dict, List, Optional
-import sib_api_v3_sdk
-from sib_api_v3_sdk.rest import ApiException
-
-# from config import get_settings
-
-# settings = get_settings()
-
 configuration = sib_api_v3_sdk.Configuration()
-configuration.api_key[
-    "api-key"
-] = "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"
+configuration.api_key["api-key"] = settings.brevo_api_key
 
 api_instance = sib_api_v3_sdk.TransactionalEmailsApi(
     sib_api_v3_sdk.ApiClient(configuration)
 )
 subject = "Login Credentials"
-sender = {"name": "Sendinblue", "email": "kyei9189@gmail.com"}
-replyTo = {"name": "Sendinblue", "email": "kyei9189@gmail.com"}
+sender = {
+    "name": settings.sender_name,
+    "email": settings.sender_email,
+}
+replyTo = {
+    "name": settings.sender_name,
+    "email": settings.sender_email,
+}
 # to = [{"email": "kyeisamuel931@gmail.com", "name": "Samuel Kyei"}]
 params = {"parameter": "My param value", "subject": "New Subject"}
 
@@ -72,15 +68,9 @@ def send_transaction_email(
     )
 
     try:
-        api_response = api_instance.send_transac_email(send_smtp_email)
+        api_instance.send_transac_email(send_smtp_email)
     except ApiException as e:
         print("Exception when calling SMTPApi->send_transac_email: %s\n" % e)
-
-
-import random
-import string
-
-import secrets
 
 
 def generate_random_password(length=12):

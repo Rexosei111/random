@@ -1,0 +1,72 @@
+[
+  {
+    "certificate_id": "CERT001",
+    "name_of_student": "John Doe",
+    "programme": "Computer Science",
+    "department": "Computer Science",
+    "cwa": 3.75,
+    "degree_classification": "First Class",
+    "year_of_completion": 2023,
+    "index_number": "CS2023001"
+  },
+  {
+    "certificate_id": "CERT002",
+    "name_of_student": "Jane Smith",
+    "programme": "Electrical Engineering",
+    "department": "Engineering",
+    "cwa": 3.6,
+    "degree_classification": "Second Class Upper",
+    "year_of_completion": 2022,
+    "index_number": "EE2022002"
+  },
+  {
+    "certificate_id": "CERT003",
+    "name_of_student": "Alice Johnson",
+    "programme": "Biology",
+    "department": "Life Sciences",
+    "cwa": 3.9,
+    "degree_classification": "First Class",
+    "year_of_completion": 2024,
+    "index_number": "LS2024003"
+  },
+  {
+    "certificate_id": "CERT004",
+    "name_of_student": "Michael Brown",
+    "programme": "Mechanical Engineering",
+    "department": "Engineering",
+    "cwa": 3.45,
+    "degree_classification": "Second Class Lower",
+    "year_of_completion": 2022,
+    "index_number": "ME2022004"
+  },
+  {
+    "certificate_id": "CERT005",
+    "name_of_student": "Sara Wilson",
+    "programme": "Chemistry",
+    "department": "Physical Sciences",
+    "cwa": 3.8,
+    "degree_classification": "First Class",
+    "year_of_completion": 2023,
+    "index_number": "PS2023005"
+  },
+  {
+    "certificate_id": "CERT006",
+    "name_of_student": "David Lee",
+    "programme": "Economics",
+    "department": "Social Sciences",
+    "cwa": 3.65,
+    "degree_classification": "Second Class Upper",
+    "year_of_completion": 2024,
+    "index_number": "SS2024006"
+  },
+  {
+    "certificate_id": "CERT007",
+    "name_of_student": "Emily Davis",
+    "programme": "Psychology",
+    "department": "Social Sciences",
+    "cwa": 3.75,
+    "degree_classification": "First Class",
+    "year_of_completion": 2022,
+    "index_number": "SS2022007"
+  }
+]
