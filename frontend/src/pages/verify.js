@@ -17,12 +17,10 @@ export default function Verify() {
         const { data } = await APIClient.post(
           `/companies/verify-email?email=${email}`
         );
-        if (data !== null) {
           setVerified(true);
           setCredentials(data)
-        } else {
-          setVerified(false);
-        }
+        
+        
       } catch (error) {
         if (isAxiosError(error)) {
           console.log(error);
